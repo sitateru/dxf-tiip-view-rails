@@ -2,7 +2,11 @@
 
 Gemfile
 ```
-gem 'dxf_tiip_view', path: 'dxf_tiip_view'
+gem 'dxf_tiip_view', :git => 'https://github.com/shinobushiva/dxf-tiip-view-rails'
+```
+
+```
+$ bundle install
 ```
 
 routes.rb
