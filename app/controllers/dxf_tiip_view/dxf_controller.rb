@@ -12,10 +12,9 @@ module DxfTiipView
     
     def download
       
-      p "------"
       url = params[:url]
       url = URI.unescape(url).gsub('&amp;', '&')
-      p url
+      # p url
       
       uri = URI.parse(url)
       filename = File.basename(uri.path)
