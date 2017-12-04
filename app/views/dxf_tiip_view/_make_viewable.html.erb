@@ -1,0 +1,72 @@
+<script>
+$(function(){
+    function htmlDecode(input){
+      var e = document.createElement('div');
+      e.innerHTML = input;
+      return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+    
+    //window.openByPost 実装
+    window.openByPost = function ( url, query, name, title, features )
+    {
+        var win = window.open( title, name, features );
+    
+        // formを生成
+        var form = document.createElement("form");
+        form.target = name;
+        form.action = url;
+        form.method = 'post';
+    
+        for( var i = 0; i < query.length; i++ ) 
+        {
+            var kv = query[i];
+            var key = kv["key"];
+            var val = kv["value"];
+    
+    
+            if ( key )
+            {
+                var input = document.createElement("input");
+                val = ( val != null ? val : "" );
+    
+                input.type = "hidden";
+                input.name = key;
+                input.value = val;
+                form.appendChild( input );    
+            }
+        }
+    
+        // 一時的にbodyへformを追加。サブミット後、formを削除する
+        var body = document.getElementsByTagName("body")[0];
+        body.appendChild(form);
+        form.submit();
+        body.removeChild(form); 
+    
+        return win;
+    }
+
+    selector = '<%= selector %>';
+    selector = htmlDecode(selector);
+    
+    $(selector).click(function (e){
+        e.preventDefault();
+        
+        var href = $(this).attr('href');
+        console.log(href);
+        
+        var url = '<%= engine_root %>/view';
+        var title = "DXF TIIP View (Beta)";
+        var features = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
+        
+        console.log("<%= font_file_path %>");
+        var query = [   
+            { key:"url", value: href},
+            { key:"font", value: "<%= font_file_path %>"},
+            { key:"authenticity_token", value: "<%= form_authenticity_token %>"},
+        ];
+
+        //実行
+        PostWindow = window.openByPost(url, query, "_newWindow", title, features);
+    });
+});
+</script>
