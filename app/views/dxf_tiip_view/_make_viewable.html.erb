@@ -1,5 +1,6 @@
 <script>
 $(function(){
+    
     function htmlDecode(input){
       var e = document.createElement('div');
       e.innerHTML = input;
@@ -44,9 +45,12 @@ $(function(){
     
         return win;
     }
+    
 
     selector = '<%= selector %>';
     selector = htmlDecode(selector);
+    
+    console.log('Loading DXF TIIP View for selector ' + selector);
     
     $(selector).click(function (e){
         e.preventDefault();

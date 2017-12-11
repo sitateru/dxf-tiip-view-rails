@@ -6,5 +6,17 @@ module DxfTiipView
         include DxfTiipView::ViewHelper
       end
     end
+    
+    def self.mounted_path
+      # p 'hello'
+      # p self
+      route = Rails.application.routes.routes.detect do |route|
+        # p route.app.app.class.name
+        route.app.app == self
+      end
+      # p route
+      route && route.path
+    end
+  
   end
 end

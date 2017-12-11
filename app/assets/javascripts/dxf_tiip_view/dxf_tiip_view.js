@@ -135,7 +135,6 @@ class DxfTiipView {
 
   }
   
-  
   constructor(){
     this.progress = document.getElementById('file-progress-bar');
     this.$progress = $('.progress');
