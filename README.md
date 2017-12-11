@@ -42,5 +42,5 @@ View (in erb)
 
 View (in haml style)
 ```
-%div.tiip= dxf_tiip 'a[href*=".dxf"]', '/font/honoka_antique_kaku_regular.json'
+= dxf_tiip 'a[href*=".dxf"]', '/font/honoka_antique_kaku_regular.json'
 ```
