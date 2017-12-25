@@ -8,6 +8,7 @@ module DxfTiipView
   class DxfController < ApplicationController
     
     def view
+      render layout: "dxf_tiip_view/application"
     end
     
     def download
