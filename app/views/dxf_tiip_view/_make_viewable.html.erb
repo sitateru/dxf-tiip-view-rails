@@ -51,8 +51,13 @@ $(function(){
     selector = htmlDecode(selector);
     
     console.log('Loading DXF TIIP View for selector ' + selector);
-    
-    $(selector).click(function (e){
+
+    <% if parent.size.positive? %>
+    <%= raw "parent = '#{parent}';" %>
+    <%= raw "$(parent).on('click', selector, function(e) {" %>
+    <% else %>
+    <%= "$(selector).click(function (e){" %>
+    <% end %>
         e.preventDefault();
         
         var href = $(this).attr('href');
